@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
-    providers: []
+    providers: [{ provide: Window, useValue: window }],
 };
