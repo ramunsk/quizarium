@@ -1,0 +1,22 @@
+:root {
+    --background-color: #242936;
+    --foreground-color: #cccac2;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+    color: var(--foreground-color);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+}
