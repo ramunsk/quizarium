@@ -2,6 +2,7 @@
     --background-color: #242936;
     --foreground-color: #cccac2;
     --title-font: 'Julius Sans One', sans-serif;
+    --body-font: 'Open sans', sans-serif;
 }
 
 html,
@@ -17,7 +18,8 @@ html {
 }
 
 body {
-    font-size: 1.4rem;
+    font-family: var(--body-font);
+    font-size: 3rem;
     background: var(--background-color);
     color: var(--foreground-color);
 }

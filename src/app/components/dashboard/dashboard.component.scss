@@ -1,0 +1,26 @@
+:host {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 50%;
+    margin: 0 auto;
+    line-height: 2em;
+    color: #92949b;
+}
+
+button {
+    font: inherit;
+    background: #ffcc66;
+    border-radius: 1rem;
+    font-family: var(--title-font);
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background: #e09c1d;
+        color: white;
+    }
+}
