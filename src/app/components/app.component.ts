@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApplicationStateService } from '../services/application-state.service';
+import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -10,7 +11,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     styleUrl: './app.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [AsyncPipe, WelcomeComponent, DashboardComponent],
+    imports: [AsyncPipe, WelcomeComponent, DashboardComponent, MainMenuComponent],
 })
 export class AppComponent {
     constructor(
