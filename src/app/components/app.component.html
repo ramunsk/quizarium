@@ -1,1 +1,5 @@
-<h1>Quizarium</h1>
+@if (application.isLoading$ | async) {
+    <qz-welcome />
+} @else {
+    Loaded!
+}
