@@ -20,6 +20,6 @@ export class AppComponent {
     ngOnInit(): void {
         this.window.setTimeout(() => {
             this.application.loading = false;
-        }, 1000);
+        }, 3000);
     }
 }
