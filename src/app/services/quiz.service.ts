@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, take } from 'rxjs';
+import { randomBetween } from '../core/utils';
 import { Answer } from '../model/answer';
 import { Question } from '../model/question';
+import { Quiz } from '../model/quiz';
 
 interface QuestionJson {
     question: string;
@@ -28,5 +30,19 @@ export class QuizService {
                 });
             })
         );
+    }
+
+    createQuiz(): Quiz {
+        // create an array of randomly selected questions
+        const quizQuestions: Question[] = [];
+        while (quizQuestions.length < 10) {
+            const index = randomBetween(0, this._questions.length - 1);
+            const question = this._questions[index];
+            if (!quizQuestions.includes(question)) {
+                quizQuestions.push(question);
+            }
+        }
+
+        return new Quiz(quizQuestions);
     }
 }

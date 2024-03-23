@@ -19,13 +19,12 @@ export class WelcomeComponent {
     ngOnInit(): void {
         console.log('loading');
 
-        const delay$ = of(true).pipe(delay(3000));
+        const delay$ = of(true).pipe(delay(10));
         const questions$ = this.quizService.loadQuestions();
 
         combineLatest([delay$, questions$])
             .pipe(take(1))
             .subscribe(() => {
-                console.log('Loaded');
                 this.application.loading = false;
             });
     }

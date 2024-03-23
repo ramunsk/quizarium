@@ -7,7 +7,7 @@ import { QuizStep } from './quiz-step';
 export class Quiz {
     private steps: QuizStep[];
 
-    private readonly _currentStep: WritableSignal<QuizStep | undefined>;
+    private readonly _currentStep: WritableSignal<QuizStep>;
 
     constructor(questions: Question[]) {
         expect.toBeArray(questions, '[Quiz] invalid "questions" argument value');
@@ -15,23 +15,15 @@ export class Quiz {
         expect.to(new Set(questions).size === questions.length, '[Quiz] should not have repeating questions');
 
         this.steps = questions.map((q) => new QuizStep(q));
-        this._currentStep = signal(undefined);
+        this._currentStep = signal(this.steps[0]);
     }
 
-    get currentStep(): Signal<QuizStep | undefined> {
+    get currentStep(): Signal<QuizStep> {
         return this._currentStep.asReadonly();
     }
 
     get currentStepAnswer(): Signal<Answer | undefined> {
         return computed(() => this._currentStep()?.chosenAnswer());
-    }
-
-    start(): void {
-        this._currentStep.set(this.steps[0]);
-    }
-
-    submit(): void {
-        this._currentStep.set(undefined);
     }
 
     get isFirstStep(): boolean {
@@ -49,7 +41,7 @@ export class Quiz {
         }
 
         const index = this.steps.indexOf(currentStep);
-        this._currentStep.set(this.steps.at(index - 1));
+        this._currentStep.set(this.steps.at(index - 1)!);
     }
 
     gotoNextStep(): void {
@@ -59,6 +51,6 @@ export class Quiz {
         }
 
         const index = this.steps.indexOf(currentStep);
-        this._currentStep.set(this.steps.at(index + 1));
+        this._currentStep.set(this.steps.at(index + 1)!);
     }
 }

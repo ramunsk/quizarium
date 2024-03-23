@@ -20,5 +20,6 @@ export class QuizStep {
     set chosenAnswer(answer: Answer) {
         expect.to(answer && this.question.answers.includes(answer), '[QuizStep] answer does not belong to a question');
         this._chosenAnswer.set(answer);
+        console.log('Chosen answer:', answer.text, answer.isCorrect);
     }
 }

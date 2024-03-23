@@ -1,7 +1,11 @@
-<qz-main-menu [title]="'Quizarium'" />
+@if (!isLoading()) {
+    <qz-main-menu [title]="'Quizarium'" />
+}
 
-@if (application.isLoading$ | async) {
+@if (isLoading()) {
     <qz-welcome />
+} @else if (inQuizMode()) {
+    <qz-quiz />
 } @else {
     <qz-dashboard />
 }

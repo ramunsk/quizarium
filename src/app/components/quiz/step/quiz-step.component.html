@@ -1,0 +1,9 @@
+<div>
+    {{ step().question.text }}
+</div>
+
+@for (answer of step().question.answers; track answer.text) {
+    <div (click)="step().chosenAnswer = answer">
+        {{ answer.text }}
+    </div>
+}
