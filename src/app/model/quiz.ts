@@ -4,6 +4,13 @@ import { Answer } from './answer';
 import { Question } from './question';
 import { QuizStep } from './quiz-step';
 
+export interface QuizStats {
+    totalQuestions: number;
+    skippedQuestions: number;
+    answeredQuestions: number;
+    correctAnswers: number;
+}
+
 export class Quiz {
     private steps: QuizStep[];
 
@@ -52,5 +59,18 @@ export class Quiz {
 
         const index = this.steps.indexOf(currentStep);
         this._currentStep.set(this.steps.at(index + 1)!);
+    }
+
+    getStats(): QuizStats {
+        const totalQuestions = this.steps.length;
+        const answeredQuestions = this.steps.filter((q) => q.chosenAnswer()).length;
+        const skippedQuestions = totalQuestions - answeredQuestions;
+        const correctAnswers = this.steps.filter((q) => q.chosenAnswer()?.isCorrect).length;
+        return {
+            totalQuestions,
+            answeredQuestions,
+            skippedQuestions,
+            correctAnswers,
+        };
     }
 }

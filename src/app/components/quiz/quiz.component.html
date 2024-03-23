@@ -1,11 +1,18 @@
 @if (quiz(); as quiz) {
-    <qz-quiz-step [step]="quiz.currentStep()" />
-    @if (!quiz.isFirstStep) {
-        <button type="button" (click)="quiz.gotoPreviousStep()">Previous</button>
-    }
-    @if (!quiz.isLastStep) {
-        <button type="button" (click)="quiz.gotoNextStep()">
-            {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }}
-        </button>
+    @if (solved()) {
+        <qz-quiz-stats [stats]="quiz.getStats()" />
+    } @else {
+        <qz-quiz-step [step]="quiz.currentStep()" />
+        @if (!quiz.isFirstStep) {
+            <button type="button" (click)="quiz.gotoPreviousStep()">Previous</button>
+        }
+        @if (!quiz.isLastStep) {
+            <button type="button" (click)="quiz.gotoNextStep()">
+                {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }}
+            </button>
+        }
+        @if (quiz.isLastStep) {
+            <button type="button" (click)="this.solved.set(true)">Submit</button>
+        }
     }
 }
