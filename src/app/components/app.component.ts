@@ -14,14 +14,5 @@ import { WelcomeComponent } from './welcome/welcome.component';
     imports: [AsyncPipe, WelcomeComponent, DashboardComponent, MainMenuComponent],
 })
 export class AppComponent {
-    constructor(
-        protected application: ApplicationStateService,
-        private window: Window
-    ) {}
-
-    ngOnInit(): void {
-        this.window.setTimeout(() => {
-            this.application.loading = false;
-        }, 3000);
-    }
+    constructor(protected application: ApplicationStateService) {}
 }
