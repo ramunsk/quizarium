@@ -1,0 +1,13 @@
+<div class="question">
+    {{ step().question.text }}
+</div>
+
+@for (answer of step().question.answers; track answer.text) {
+    <div
+        class="answer"
+        [ngClass]="{ selected: answer === step().chosenAnswer() }"
+        (click)="answerSelected.emit(answer)"
+    >
+        <span class="indicator"></span> {{ answer.text }}
+    </div>
+}

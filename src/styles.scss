@@ -31,3 +31,18 @@ body {
 h1 {
     margin: 0;
 }
+
+button {
+    font: inherit;
+
+    &.button-link {
+        background: transparent;
+        border: none;
+        color: #5ccfe6;
+        cursor: pointer;
+
+        &.green {
+            color: #d5ff80;
+        }
+    }
+}

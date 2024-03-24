@@ -1,0 +1,35 @@
+:host {
+    display: block;
+    border: 1px solid #0b0d11;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.question {
+    font-weight: bold;
+    padding: 1rem 0;
+}
+
+.answer {
+    padding: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        background: #2f3647;
+    }
+
+    .indicator {
+        display: inline-block;
+        height: 100%;
+        width: 2rem;
+        aspect-ratio: 1;
+        border: 1px solid #ffd173;
+        margin-right: 1rem;
+    }
+
+    &.selected {
+        .indicator {
+            background: #ffd173;
+        }
+    }
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ApplicationStateService } from '../../services/application-state.service';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
     selector: 'qz-dashboard',
@@ -8,7 +10,13 @@ import { Component } from '@angular/core';
     styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+    constructor(
+        private quizService: QuizService,
+        private application: ApplicationStateService
+    ) {}
+
     startQuiz(): void {
-        console.log("Let's go!");
+        const quiz = this.quizService.createQuiz();
+        this.application.startQuiz(quiz);
     }
 }

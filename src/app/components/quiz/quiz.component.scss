@@ -1,0 +1,9 @@
+:host {
+    display: block;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 2rem 0;
+}

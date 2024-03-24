@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the capital of France?",
+        "choices": ["London", "Paris", "Berlin", "Madrid"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which colour pill does Neo swallow in The Matrix?",
+        "choices": ["Red", "Blue", "Green", "Yellow", "Neo did not do drugs"],
+        "correctAnswer": 0
+    },
+    {
+        "question": "A \"screwdriver\" cocktail is orange juice, ice and which spirit?",
+        "choices": ["Rum", "Gin", "Tequila", "Vodka"],
+        "correctAnswer": 3
+    },
+    {
+        "question": "Which US state was Joe Biden born in?",
+        "choices": ["Delaware", "New York", "California", "Pennsylvania", "Texas"],
+        "correctAnswer": 3
+    },
+    {
+        "question": "Who painted the Mona Lisa?",
+        "choices": ["Michelangelo", "Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which planet is known as the \"Red Planet\"?",
+        "choices": ["Mars", "Venus", "Jupiter", "Saturn"],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is the largest mammal in the world?",
+        "choices": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the main ingredient in guacamole?",
+        "choices": ["Tomato", "Onion", "Avocado", "Lemon"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "What is the tallest mountain in the world?",
+        "choices": ["Mount Kilimanjaro", "Mount McKinley", "Mount Fuji", "Mount Everest", "Mount Rushmore"],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What is the chemical symbol for gold?",
+        "choices": ["Ag", "Go", "Au", "Gd", "Gold is not a chemical element"],
+        "correctAnswer": 2
+    }
+]
