@@ -6,17 +6,19 @@
         <div class="buttons">
             <div>
                 @if (!quiz.isFirstStep) {
-                    <button type="button" (click)="quiz.gotoPreviousStep()">&#x2039; Previous</button>
+                    <button type="button" class="button-link" (click)="quiz.gotoPreviousStep()">
+                        &#x2039; Previous
+                    </button>
                 }
             </div>
             <div>
                 @if (!quiz.isLastStep) {
-                    <button type="button" (click)="quiz.gotoNextStep()">
+                    <button type="button" class="button-link" (click)="quiz.gotoNextStep()">
                         {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }} &#x203A;
                     </button>
                 }
                 @if (quiz.isLastStep) {
-                    <button type="button" (click)="this.solved.set(true)">Submit</button>
+                    <button type="button" class="button-link" (click)="this.solved.set(true)">Submit</button>
                 }
             </div>
         </div>

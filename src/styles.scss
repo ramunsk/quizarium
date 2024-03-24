@@ -34,4 +34,11 @@ h1 {
 
 button {
     font: inherit;
+
+    &.button-link {
+        background: transparent;
+        border: none;
+        color: #5ccfe6;
+        cursor: pointer;
+    }
 }
