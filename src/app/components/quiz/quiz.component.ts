@@ -29,7 +29,9 @@ export class QuizComponent {
             return;
         }
         this.quiz()!.currentStep()!.chosenAnswer = answer;
-        this.quiz()!.gotoNextStep();
+        setTimeout(() => {
+            this.quiz()!.gotoNextStep();
+        }, 500);
     }
 
     submit(): void {
