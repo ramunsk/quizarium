@@ -1,24 +1,24 @@
 @if (quiz(); as quiz) {
-    @if (solved()) {
+    @if (quiz.state() === 'solved') {
         <qz-quiz-stats />
     } @else {
         <qz-quiz-step-header [step]="quiz.currentStep()!" />
         <qz-quiz-step [step]="quiz.currentStep()!" (answerSelected)="onAnswerSelected($event)" />
         <div class="buttons">
             <div>
-                @if (!quiz.isFirstStep) {
+                @if (!quiz.isFirstStep()) {
                     <button type="button" class="button-link" (click)="quiz.gotoPreviousStep()">
                         &#x2039; Previous
                     </button>
                 }
             </div>
             <div>
-                @if (!quiz.isLastStep) {
+                @if (!quiz.isLastStep()) {
                     <button type="button" class="button-link" (click)="quiz.gotoNextStep()">
                         {{ quiz.currentStep()?.chosenAnswer() ? 'Next' : 'Skip' }} &#x203A;
                     </button>
                 }
-                @if (quiz.isLastStep) {
+                @if (quiz.isLastStep()) {
                     <button type="button" class="button-link green" (click)="submit()">Submit</button>
                 }
             </div>

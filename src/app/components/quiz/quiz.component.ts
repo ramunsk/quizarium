@@ -1,4 +1,4 @@
-import { Component, Signal, signal } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Answer } from '../../model/answer';
 import { Quiz } from '../../model/quiz';
@@ -17,7 +17,6 @@ import { QuizStepComponent } from './step/quiz-step.component';
 })
 export class QuizComponent {
     protected quiz: Signal<Quiz | undefined>;
-    protected solved = signal<boolean>(false);
 
     constructor(application: ApplicationStateService) {
         this.quiz = toSignal(application.quiz$);
@@ -29,7 +28,6 @@ export class QuizComponent {
     }
 
     submit(): void {
-        this.solved.set(true);
-        this.quiz()?.currentStep()!.stopTimer();
+        this.quiz()?.submit();
     }
 }
