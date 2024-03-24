@@ -9,6 +9,8 @@
     "scripts": {
         "start": "ng serve",
         "build": "ng build",
+        "test": "vitest run",
+        "test:watch": "vitest",
         "test:ci": "vitest run"
     },
     "dependencies": {
