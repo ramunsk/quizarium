@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { QuizStep } from '../../../../model/quiz-step';
+import { Quiz } from '../../../../model/quiz';
 import { TimePipe } from '../../../../pipes/time.pipe';
 
 @Component({
@@ -10,5 +10,5 @@ import { TimePipe } from '../../../../pipes/time.pipe';
     styleUrl: './quiz-step-header.component.scss',
 })
 export class QuizStepHeaderComponent {
-    step = input.required<QuizStep>();
+    quiz = input.required<Quiz>();
 }

@@ -1,9 +1,13 @@
 @if (quiz(); as quiz) {
-    @if (quiz.state() === 'solved') {
-        <qz-quiz-stats />
+    @if (quiz.state() === 'solved' && !inReviewMode()) {
+        <qz-quiz-stats (reviewRequested)="startReview()" />
     } @else {
-        <qz-quiz-step-header [step]="quiz.currentStep()!" />
-        <qz-quiz-step [step]="quiz.currentStep()!" (answerSelected)="onAnswerSelected($event)" />
+        <qz-quiz-step-header [quiz]="quiz" />
+        <qz-quiz-step
+            [step]="quiz.currentStep()!"
+            [reviewMode]="inReviewMode()"
+            (answerSelected)="onAnswerSelected($event)"
+        />
         <div class="buttons">
             <div>
                 @if (!quiz.isFirstStep()) {

@@ -1,1 +1,4 @@
-{{ step().elapsed() | time }}
+<div>Question {{ quiz().currentStepIndex()! + 1 }} of {{ quiz().totalSteps }}</div>
+<div>
+    {{ quiz().currentStep()!.elapsed() | time }}
+</div>

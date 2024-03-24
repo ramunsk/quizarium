@@ -1,4 +1,4 @@
-import { Component, Signal } from '@angular/core';
+import { Component, Signal, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Quiz } from '../../../model/quiz';
 import { TimePipe } from '../../../pipes/time.pipe';
@@ -12,6 +12,8 @@ import { ApplicationStateService } from '../../../services/application-state.ser
     styleUrl: './quiz-stats.component.scss',
 })
 export class QuizStatsComponent {
+    readonly reviewRequested = output();
+
     protected quiz: Signal<Quiz | undefined>;
 
     constructor(protected application: ApplicationStateService) {

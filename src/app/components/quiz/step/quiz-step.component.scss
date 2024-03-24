@@ -32,4 +32,12 @@
             background: #ffd173;
         }
     }
+
+    &.correct {
+        color: #caff80;
+    }
+
+    &.incorrect {
+        color: #ff6666;
+    }
 }
