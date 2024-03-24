@@ -1,4 +1,4 @@
-import { Component, Signal, signal } from '@angular/core';
+import { Component, Signal, WritableSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Answer } from '../../model/answer';
 import { Quiz } from '../../model/quiz';
@@ -17,19 +17,28 @@ import { QuizStepComponent } from './step/quiz-step.component';
 })
 export class QuizComponent {
     protected quiz: Signal<Quiz | undefined>;
-    protected solved = signal<boolean>(false);
+    protected inReviewMode: WritableSignal<boolean>;
 
     constructor(application: ApplicationStateService) {
         this.quiz = toSignal(application.quiz$);
+        this.inReviewMode = signal(false);
     }
 
     onAnswerSelected(answer: Answer): void {
-        this.quiz()!.currentStep().chosenAnswer = answer;
-        this.quiz()?.gotoNextStep();
+        if (this.quiz()?.state() !== 'in-progress') {
+            return;
+        }
+        this.quiz()!.currentStep()!.chosenAnswer = answer;
+        setTimeout(() => {
+            this.quiz()!.gotoNextStep();
+        }, 500);
     }
 
     submit(): void {
-        this.solved.set(true);
-        this.quiz()?.currentStep().stopTimer();
+        this.quiz()!.submit();
+    }
+
+    startReview(): void {
+        this.inReviewMode.set(true);
     }
 }

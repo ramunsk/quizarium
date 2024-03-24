@@ -18,5 +18,6 @@ export class DashboardComponent {
     startQuiz(): void {
         const quiz = this.quizService.createQuiz();
         this.application.startQuiz(quiz);
+        quiz.start();
     }
 }

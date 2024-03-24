@@ -1,20 +1,26 @@
 <strong>Congratulations! You have finished the quiz</strong>
 <ul>
     <li>
-        Total questions: <strong>{{ stats()?.totalQuestions }}</strong>
+        Total questions: <strong>{{ quiz()?.stats()?.totalQuestions }}</strong>
     </li>
     <li>
-        Answered questions: <strong>{{ stats()?.answeredQuestions }}</strong>
+        Answered questions: <strong>{{ quiz()?.stats()?.answeredQuestions }}</strong>
     </li>
     <li>
-        Skipped questions: <strong>{{ stats()?.skippedQuestions }}</strong>
+        Skipped questions: <strong>{{ quiz()?.stats()?.skippedQuestions }}</strong>
     </li>
     <li>
-        Correct answers: <strong>{{ stats()?.correctAnswers }}</strong>
+        Correct answers: <strong>{{ quiz()?.stats()?.correctAnswers }}</strong>
     </li>
     <li>
-        Time spent: <strong>{{ stats()!.timeSpent | time }}</strong>
+        Time spent: <strong>{{ quiz()!.stats()!.timeSpent | time }}</strong>
     </li>
 </ul>
-
-<button type="button" class="button-link" (click)="application.endQuiz()">Go to dashboard</button>
+<div class="buttons">
+    <div>
+        <button type="button" class="button-link" (click)="reviewRequested.emit()">Review your answers</button>
+    </div>
+    <div>
+        <button type="button" class="button-link" (click)="application.endQuiz()">Go to dashboard</button>
+    </div>
+</div>

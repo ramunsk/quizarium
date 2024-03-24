@@ -12,5 +12,6 @@ import { QuizStep } from '../../../model/quiz-step';
 })
 export class QuizStepComponent {
     step = input.required<QuizStep>();
+    reviewMode = input.required<boolean>();
     answerSelected = output<Answer>();
 }

@@ -5,7 +5,11 @@
 @for (answer of step().question.answers; track answer.text) {
     <div
         class="answer"
-        [ngClass]="{ selected: answer === step().chosenAnswer() }"
+        [ngClass]="{
+            selected: answer === step().chosenAnswer(),
+            correct: reviewMode() && answer.isCorrect,
+            incorrect: reviewMode() && step().chosenAnswer() === answer && !answer.isCorrect
+        }"
         (click)="answerSelected.emit(answer)"
     >
         <span class="indicator"></span> {{ answer.text }}
