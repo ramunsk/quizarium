@@ -22,6 +22,7 @@ export class Quiz {
     private steps: QuizStep[];
     private readonly _state: WritableSignal<QuizState>;
     private readonly _currentStep: WritableSignal<QuizStep | undefined>;
+    private readonly _stats: WritableSignal<QuizStats | undefined>;
 
     constructor(questions: Question[]) {
         expect.toBeArray(questions, '[Quiz] invalid "questions" argument value');
@@ -44,6 +45,7 @@ export class Quiz {
         this.isLastStep = computed(() => {
             return this.currentStep() === this.steps.at(-1);
         });
+        this._stats = signal(undefined);
     }
 
     get state(): Signal<QuizState> {
@@ -62,6 +64,10 @@ export class Quiz {
         return computed(() => this._currentStep()?.chosenAnswer());
     }
 
+    get stats(): Signal<QuizStats | undefined> {
+        return this._stats.asReadonly();
+    }
+
     start(): void {
         this._state.set('in-progress');
         const firstStep = this.steps[0];
@@ -69,42 +75,50 @@ export class Quiz {
         firstStep.startTimer();
     }
 
-    // gotoPreviousStep(): void {
-    //     const currentStep = this.currentStep();
-    //     if (!currentStep || this.isFirstStep) {
-    //         return;
-    //     }
+    gotoPreviousStep(): void {
+        expect.to(this.state() !== 'ready', '[Quiz] cannot navigate quiz while in ready state');
+        const currentStep = this.currentStep();
+        if (!currentStep || this.isFirstStep()) {
+            return;
+        }
 
-    //     this._currentStep()?.stopTimer();
-    //     const index = this.steps.indexOf(currentStep);
-    //     this._currentStep.set(this.steps.at(index - 1)!);
-    //     this._currentStep()?.startTimer();
-    // }
+        const index = this.steps.indexOf(currentStep);
+        this._state() === 'in-progress' && this._currentStep()?.stopTimer();
+        this._currentStep.set(this.steps.at(index - 1)!);
+        this._state() === 'in-progress' && this._currentStep()?.startTimer();
+    }
 
-    // gotoNextStep(): void {
-    //     const currentStep = this.currentStep();
-    //     if (!currentStep || this.isLastStep) {
-    //         return;
-    //     }
+    gotoNextStep(): void {
+        expect.to(this.state() !== 'ready', '[Quiz] cannot navigate quiz while in ready state');
+        const currentStep = this.currentStep();
+        if (!currentStep || this.isLastStep()) {
+            return;
+        }
 
-    //     const index = this.steps.indexOf(currentStep);
-    //     this._currentStep()?.stopTimer();
-    //     this._currentStep.set(this.steps.at(index + 1)!);
-    //     this._currentStep()?.startTimer();
-    // }
+        const index = this.steps.indexOf(currentStep);
+        this._state() === 'in-progress' && this._currentStep()?.stopTimer();
+        this._currentStep.set(this.steps.at(index + 1)!);
+        this._state() === 'in-progress' && this._currentStep()?.startTimer();
+    }
 
-    // getStats(): QuizStats {
-    //     const totalQuestions = this.steps.length;
-    //     const answeredQuestions = this.steps.filter((q) => q.chosenAnswer()).length;
-    //     const skippedQuestions = totalQuestions - answeredQuestions;
-    //     const correctAnswers = this.steps.filter((q) => q.chosenAnswer()?.isCorrect).length;
-    //     const timeSpent = this.steps.reduce((total, step) => total + step.elapsed(), 0);
-    //     return {
-    //         totalQuestions,
-    //         answeredQuestions,
-    //         skippedQuestions,
-    //         correctAnswers,
-    //         timeSpent,
-    //     };
-    // }
+    submit(): void {
+        this._state.set('solved');
+        this._currentStep.set(this.steps[0]);
+        this._stats.set(this.getStats());
+    }
+
+    private getStats(): QuizStats {
+        const totalQuestions = this.steps.length;
+        const answeredQuestions = this.steps.filter((q) => q.chosenAnswer()).length;
+        const skippedQuestions = totalQuestions - answeredQuestions;
+        const correctAnswers = this.steps.filter((q) => q.chosenAnswer()?.isCorrect).length;
+        const timeSpent = this.steps.reduce((total, step) => total + step.elapsed(), 0);
+        return {
+            totalQuestions,
+            answeredQuestions,
+            skippedQuestions,
+            correctAnswers,
+            timeSpent,
+        };
+    }
 }
