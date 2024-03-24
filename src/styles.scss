@@ -40,5 +40,9 @@ button {
         border: none;
         color: #5ccfe6;
         cursor: pointer;
+
+        &.green {
+            color: #d5ff80;
+        }
     }
 }

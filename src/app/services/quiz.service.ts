@@ -35,7 +35,7 @@ export class QuizService {
     createQuiz(): Quiz {
         // create an array of randomly selected questions
         const quizQuestions: Question[] = [];
-        while (quizQuestions.length < 2) {
+        while (quizQuestions.length < 10) {
             const index = randomBetween(0, this._questions.length - 1);
             const question = this._questions[index];
             if (!quizQuestions.includes(question)) {

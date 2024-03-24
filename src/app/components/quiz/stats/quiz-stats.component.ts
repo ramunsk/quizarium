@@ -14,7 +14,7 @@ export class QuizStatsComponent {
     protected quiz: Signal<Quiz | undefined>;
     protected stats: Signal<QuizStats | undefined>;
 
-    constructor(application: ApplicationStateService) {
+    constructor(protected application: ApplicationStateService) {
         this.quiz = toSignal(application.quiz$);
         this.stats = computed(() => this.quiz()?.getStats());
     }

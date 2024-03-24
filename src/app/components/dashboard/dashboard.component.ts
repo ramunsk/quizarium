@@ -13,10 +13,7 @@ export class DashboardComponent {
     constructor(
         private quizService: QuizService,
         private application: ApplicationStateService
-    ) {
-        // TODO: Ramunas - remove me
-        this.startQuiz();
-    }
+    ) {}
 
     startQuiz(): void {
         const quiz = this.quizService.createQuiz();
