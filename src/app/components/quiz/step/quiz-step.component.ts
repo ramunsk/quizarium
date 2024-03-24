@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { Answer } from '../../../model/answer';
 import { QuizStep } from '../../../model/quiz-step';
@@ -5,7 +6,7 @@ import { QuizStep } from '../../../model/quiz-step';
 @Component({
     selector: 'qz-quiz-step',
     standalone: true,
-    imports: [],
+    imports: [NgClass],
     templateUrl: './quiz-step.component.html',
     styleUrl: './quiz-step.component.scss',
 })

@@ -3,16 +3,22 @@
         <qz-quiz-stats />
     } @else {
         <qz-quiz-step [step]="quiz.currentStep()" (answerSelected)="onAnswerSelected($event)" />
-        @if (!quiz.isFirstStep) {
-            <button type="button" (click)="quiz.gotoPreviousStep()">Previous</button>
-        }
-        @if (!quiz.isLastStep) {
-            <button type="button" (click)="quiz.gotoNextStep()">
-                {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }}
-            </button>
-        }
-        @if (quiz.isLastStep) {
-            <button type="button" (click)="this.solved.set(true)">Submit</button>
-        }
+        <div class="buttons">
+            <div>
+                @if (!quiz.isFirstStep) {
+                    <button type="button" (click)="quiz.gotoPreviousStep()">&#x2039; Previous</button>
+                }
+            </div>
+            <div>
+                @if (!quiz.isLastStep) {
+                    <button type="button" (click)="quiz.gotoNextStep()">
+                        {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }} &#x203A;
+                    </button>
+                }
+                @if (quiz.isLastStep) {
+                    <button type="button" (click)="this.solved.set(true)">Submit</button>
+                }
+            </div>
+        </div>
     }
 }
