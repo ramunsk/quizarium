@@ -103,6 +103,7 @@ export class Quiz {
 
     submit(): void {
         this._state.set('solved');
+        this._currentStep()?.stopTimer();
         this._currentStep.set(this.steps[0]);
         this._stats.set(this.getStats());
     }
