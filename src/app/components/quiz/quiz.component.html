@@ -2,8 +2,8 @@
     @if (solved()) {
         <qz-quiz-stats />
     } @else {
-        <qz-quiz-step-header [step]="quiz.currentStep()" />
-        <qz-quiz-step [step]="quiz.currentStep()" (answerSelected)="onAnswerSelected($event)" />
+        <qz-quiz-step-header [step]="quiz.currentStep()!" />
+        <qz-quiz-step [step]="quiz.currentStep()!" (answerSelected)="onAnswerSelected($event)" />
         <div class="buttons">
             <div>
                 @if (!quiz.isFirstStep) {
@@ -15,7 +15,7 @@
             <div>
                 @if (!quiz.isLastStep) {
                     <button type="button" class="button-link" (click)="quiz.gotoNextStep()">
-                        {{ quiz.currentStep().chosenAnswer() ? 'Next' : 'Skip' }} &#x203A;
+                        {{ quiz.currentStep()?.chosenAnswer() ? 'Next' : 'Skip' }} &#x203A;
                     </button>
                 }
                 @if (quiz.isLastStep) {

@@ -24,12 +24,12 @@ export class QuizComponent {
     }
 
     onAnswerSelected(answer: Answer): void {
-        this.quiz()!.currentStep().chosenAnswer = answer;
+        this.quiz()!.currentStep()!.chosenAnswer = answer;
         this.quiz()?.gotoNextStep();
     }
 
     submit(): void {
         this.solved.set(true);
-        this.quiz()?.currentStep().stopTimer();
+        this.quiz()?.currentStep()!.stopTimer();
     }
 }
