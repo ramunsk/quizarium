@@ -6,4 +6,8 @@
     display: grid;
     grid-template-columns: 1fr auto;
     padding: 2rem 0;
+
+    &.for-review {
+        grid-template-columns: 1fr 1fr auto;
+    }
 }
