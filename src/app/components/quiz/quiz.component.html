@@ -2,6 +2,7 @@
     @if (solved()) {
         <qz-quiz-stats />
     } @else {
+        <qz-quiz-step-header [step]="quiz.currentStep()" />
         <qz-quiz-step [step]="quiz.currentStep()" (answerSelected)="onAnswerSelected($event)" />
         <div class="buttons">
             <div>

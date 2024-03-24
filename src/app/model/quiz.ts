@@ -23,6 +23,7 @@ export class Quiz {
 
         this.steps = questions.map((q) => new QuizStep(q));
         this._currentStep = signal(this.steps[0]);
+        this._currentStep().startTimer();
     }
 
     get currentStep(): Signal<QuizStep> {
@@ -47,8 +48,10 @@ export class Quiz {
             return;
         }
 
+        this._currentStep().stopTimer();
         const index = this.steps.indexOf(currentStep);
         this._currentStep.set(this.steps.at(index - 1)!);
+        this._currentStep().startTimer();
     }
 
     gotoNextStep(): void {
@@ -58,7 +61,9 @@ export class Quiz {
         }
 
         const index = this.steps.indexOf(currentStep);
+        this._currentStep().stopTimer();
         this._currentStep.set(this.steps.at(index + 1)!);
+        this._currentStep().startTimer();
     }
 
     getStats(): QuizStats {
