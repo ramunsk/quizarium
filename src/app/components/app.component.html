@@ -2,10 +2,12 @@
     <qz-main-menu [title]="'Quizarium'" />
 }
 
-@if (isLoading()) {
-    <qz-welcome />
-} @else if (inQuizMode()) {
-    <qz-quiz />
-} @else {
-    <qz-dashboard />
-}
+<main>
+    @if (isLoading()) {
+        <qz-welcome />
+    } @else if (inQuizMode()) {
+        <qz-quiz />
+    } @else {
+        <qz-dashboard />
+    }
+</main>
