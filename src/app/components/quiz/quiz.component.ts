@@ -27,4 +27,9 @@ export class QuizComponent {
         this.quiz()!.currentStep().chosenAnswer = answer;
         this.quiz()?.gotoNextStep();
     }
+
+    submit(): void {
+        this.solved.set(true);
+        this.quiz()?.currentStep().stopTimer();
+    }
 }

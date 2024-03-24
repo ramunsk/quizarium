@@ -9,6 +9,7 @@ export interface QuizStats {
     skippedQuestions: number;
     answeredQuestions: number;
     correctAnswers: number;
+    timeSpent: number;
 }
 
 export class Quiz {
@@ -71,11 +72,13 @@ export class Quiz {
         const answeredQuestions = this.steps.filter((q) => q.chosenAnswer()).length;
         const skippedQuestions = totalQuestions - answeredQuestions;
         const correctAnswers = this.steps.filter((q) => q.chosenAnswer()?.isCorrect).length;
+        const timeSpent = this.steps.reduce((total, step) => total + step.elapsed(), 0);
         return {
             totalQuestions,
             answeredQuestions,
             skippedQuestions,
             correctAnswers,
+            timeSpent,
         };
     }
 }
