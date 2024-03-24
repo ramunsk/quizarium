@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Answer } from '../../../model/answer';
 import { QuizStep } from '../../../model/quiz-step';
 
 @Component({
@@ -10,4 +11,5 @@ import { QuizStep } from '../../../model/quiz-step';
 })
 export class QuizStepComponent {
     step = input.required<QuizStep>();
+    answerSelected = output<Answer>();
 }

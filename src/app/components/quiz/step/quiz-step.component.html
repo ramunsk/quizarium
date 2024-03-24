@@ -3,7 +3,7 @@
 </div>
 
 @for (answer of step().question.answers; track answer.text) {
-    <div (click)="step().chosenAnswer = answer">
+    <div (click)="answerSelected.emit(answer)">
         {{ answer.text }}
     </div>
 }

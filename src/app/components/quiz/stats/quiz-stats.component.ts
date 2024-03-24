@@ -1,5 +1,7 @@
-import { Component, input } from '@angular/core';
-import { QuizStats } from '../../../model/quiz';
+import { Component, Signal, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Quiz, QuizStats } from '../../../model/quiz';
+import { ApplicationStateService } from '../../../services/application-state.service';
 
 @Component({
     selector: 'qz-quiz-stats',
@@ -9,5 +11,11 @@ import { QuizStats } from '../../../model/quiz';
     styleUrl: './quiz-stats.component.scss',
 })
 export class QuizStatsComponent {
-    stats = input.required<QuizStats>();
+    protected quiz: Signal<Quiz | undefined>;
+    protected stats: Signal<QuizStats | undefined>;
+
+    constructor(application: ApplicationStateService) {
+        this.quiz = toSignal(application.quiz$);
+        this.stats = computed(() => this.quiz()?.getStats());
+    }
 }

@@ -1,8 +1,8 @@
 @if (quiz(); as quiz) {
     @if (solved()) {
-        <qz-quiz-stats [stats]="quiz.getStats()" />
+        <qz-quiz-stats />
     } @else {
-        <qz-quiz-step [step]="quiz.currentStep()" />
+        <qz-quiz-step [step]="quiz.currentStep()" (answerSelected)="onAnswerSelected($event)" />
         @if (!quiz.isFirstStep) {
             <button type="button" (click)="quiz.gotoPreviousStep()">Previous</button>
         }

@@ -1,7 +1,7 @@
 Congratulations! You have finished the quiz
 <ul>
-    <li>Total questions: {{ stats().totalQuestions }}</li>
-    <li>Answered questions: {{ stats().answeredQuestions }}</li>
-    <li>Skipped questions: {{ stats().skippedQuestions }}</li>
-    <li>Correct answers: {{ stats().correctAnswers }}</li>
+    <li>Total questions: {{ stats()?.totalQuestions }}</li>
+    <li>Answered questions: {{ stats()?.answeredQuestions }}</li>
+    <li>Skipped questions: {{ stats()?.skippedQuestions }}</li>
+    <li>Correct answers: {{ stats()?.correctAnswers }}</li>
 </ul>
